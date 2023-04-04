@@ -1,55 +1,22 @@
 // function App() {
-//   return (
-//     <div>
-//       Hello World!
-//     </div>
-//   );
+//   return <div>Hello World!</div>;
 // }
 
 // export default App;
-import React from 'react';
-import axios from 'axios';
+//It is a function component. Let’s make changes to the code to accept the color as props.
 
-class App extends React.Component {
-  state = { APIlist:[] }
-
-  componentDidMount() {
-    let url = "https://api.publicapis.org/entries?category=Animals";
-    axios({
-      method: 'get',
-      url: url,
-      responseType: 'json'
-    }).then(resp => {
-        let listOfEntries = resp.data.entries;
-        let listOfEntriesAsArray = Object.entries(listOfEntries);
-        let entryDetails = listOfEntriesAsArray.map((entryDetail)=>{
-          return <li style={{color: "green"}}>{entryDetail[1]["API"]}
-          ------- {entryDetail[1]["Link"]} </li>
-        })
-        this.setState({APIlist:<ul>{entryDetails}</ul>})
-      })
-    .catch(err => {
-        console.log(err.toString())
-    });
+function App(props) {
+  const colorStyle = {
+    color:props.color,
+    fontSize:props.size+"px"
   }
-
-  render() {
-    const colorStyle = { color:this.props.color,fontSize:this.props.size+"px"}
-    return (
+  return (
+    <div>
       <div style={colorStyle}>
-        <h2>APIs List</h2>
-        <br/>
-
-        <div>
-            {
-            this.state.APIlist
-            }
-        </div>
+      Hello World!
+      </div>
     </div>
-    );
-  }
+  );
 }
 
 export default App;
-
-
